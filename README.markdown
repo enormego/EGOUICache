@@ -15,8 +15,9 @@ Created by enormego
 		*	`selector`: selector that will draw the "fresh" content
 		*	`rect`: Rect to draw in
 		*	`salt`: Unique string for the content in this cached drawing.
+		
 *	`EGOUICacheSetCacheTimeoutInterval(NSTimeInterval cacheTimeoutInterval);`
-	*	*This should be called prior to calling `EGOUICachedDrawing()`, or within it as long as you're not nesting calls cache calls.*
+	*	*This should be called prior to calling `EGOUICachedDrawing()`, or within it as long as you're not nesting cache calls.*
 	*	**Parameters**
 		* `cacheTimeoutInterval` number of seconds the cache should persist for
 	*	**Convenience methods**
@@ -46,7 +47,7 @@ Let's say you have a button that gets drawn a bunch of times, that uses intensiv
 		// A bunch of complicated code that draws the text with a gradient, and glow around it, with a 1px shadow
 	}
 
-The `EGOUICachedDrawing()` call in `drawRect` will check to see if it has a cache for this target/selector with the salt being the current title, if it does, it returns the `UIImage` right away.  If it doesn't detect the cache, it calls `freshDrawRect:`, and then caches and returns an image with the contents drawn in `freshDrawRect:`.
+The `EGOUICachedDrawing()` call in `drawRect` will check to see if it has a cache for the target/selector with the salt being the current title, if it does, it returns the `UIImage` right away.  If it doesn't detect the cache, it calls `freshDrawRect:`, and then caches and returns an image with the contents drawn in `freshDrawRect:`.
 
 # License
 
