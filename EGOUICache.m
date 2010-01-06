@@ -1,6 +1,6 @@
 //
 //  EGOUICache.m
-//  Spoilers
+//  EGOUICache
 //
 //  Created by Shaun Harrison on 12/29/09.
 //  Copyright (c) 2009-2010 enormego
