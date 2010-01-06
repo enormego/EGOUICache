@@ -62,18 +62,26 @@ UIImage* EGOUICachedDrawing(id target, SEL selector, CGRect rect, NSString* salt
 		[invocation setSelector:selector];
 		[invocation setArgument:&adjustedRect atIndex:2];
 		[invocation invokeWithTarget:target];
-
-		CGImageRef cgImage = CGBitmapContextCreateImage(imageContext);
-		UIGraphicsPopContext();
-		CGContextRelease(imageContext);
 		
-		image = [UIImage imageWithCGImage:cgImage];
-		CGImageRelease(cgImage);
-		
-		[[EGOCache currentCache] setImage:image forKey:key withTimeoutInterval:_cacheTimeoutInterval];
-
-		return image;
+		if(!_cancelCache) {
+			CGImageRef cgImage = CGBitmapContextCreateImage(imageContext);
+			UIGraphicsPopContext();
+			CGContextRelease(imageContext);
+			
+			image = [UIImage imageWithCGImage:cgImage];
+			CGImageRelease(cgImage);
+			
+			[[EGOCache currentCache] setImage:image forKey:key withTimeoutInterval:_cacheTimeoutInterval];
+			return image;
+		} else {
+			_cancelCache = NO;
+			return nil;
+		}
 	}
+}
+
+void EGOUICacheCancel() {
+	_cancelCache = YES;
 }
 
 void EGOUICacheSetCacheTimeoutInterval(NSTimeInterval cacheTimeoutInterval) {

@@ -27,6 +27,9 @@ Created by enormego
 		* `EGOUICacheSetCacheTimeoutOneDay();`
 		* `EGOUICacheSetCacheTimeoutOneHour();`
 
+*	`EGOUICacheCancel();`
+	*	Cancels one level of caching.  This should be called if data hasn't yet loaded or something isn't what it's expected to be.  The image returned by `EGOUICachedDrawing()` will be nil.
+
 # Example
 
 Let's say you have a button that gets drawn a bunch of times, that uses intensive blending, and really only needs to be drawn once since the text rarely changes:

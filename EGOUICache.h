@@ -28,6 +28,9 @@
 
 UIImage* EGOUICachedDrawing(id target, SEL selector, CGRect rect, NSString* salt);
 
+// Should be called from the method calling EGOUICachedDrawing, cancels 1 level 
+void EGOUICacheCancel();
+
 // Sets the maximum length the cache will persist for.
 // Important: This does not guarantee cache will persist for this period, since caches can be cleared at any time.
 void EGOUICacheSetCacheTimeoutInterval(NSTimeInterval cacheTimeoutInterval);
