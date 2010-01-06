@@ -27,6 +27,8 @@
 #import "EGOUICache.h"
 #import "EGOCache.h"
 
+static BOOL _cancelCache;
+
 static NSTimeInterval _cacheTimeoutInterval = 604800;
 
 UIImage* EGOUICachedDrawing(id target, SEL selector, CGRect rect, NSString* salt) {
